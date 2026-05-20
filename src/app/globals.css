@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-navy: #1A2B50;
+  --color-gold: #C5A061;
+  --color-cream: #F6F2E9;
+  --color-warmgray: #CFCFCF;
+  --color-white: #FFFFFF;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-navy);
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-navy);
+}
+
+a {
+  text-underline-offset: 3px;
+}
+
+.brand-focus {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
