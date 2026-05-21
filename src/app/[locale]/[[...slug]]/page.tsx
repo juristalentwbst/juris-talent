@@ -238,7 +238,7 @@ function StudentPage({ locale }: { locale: Locale }) {
         whyTitle={locale === "fr" ? "Comment ça fonctionne" : "How it works"}
         why={t.steps}
       />
-      <Section tone="cream">
+      <Section id={locale === "fr" ? "formulaire" : "application-form"} tone="cream">
         <Container>
           <DetailBlock block={t.detail} />
           <SectionHeading title={t.application.title} text={t.application.text} />
@@ -265,7 +265,7 @@ function FirmPage({ locale }: { locale: Locale }) {
         whyTitle={locale === "fr" ? "Comment ça fonctionne" : "How it works"}
         why={t.steps}
       />
-      <Section tone="cream">
+      <Section id={locale === "fr" ? "formulaire-demande" : "request-form"} tone="cream">
         <Container>
           <DetailBlock block={t.detail} />
           <SectionHeading title={t.request.title} text={t.request.text} />
@@ -285,7 +285,7 @@ function ApplyPage({ locale }: { locale: Locale }) {
   return (
     <>
       <Hero title={t.application.title} subtitle={t.application.text} primary={t.primary} />
-      <Section tone="cream">
+      <Section id={locale === "fr" ? "formulaire" : "application-form"} tone="cream">
         <Container>
           <DetailBlock block={t.detail} />
           <Card>
@@ -302,7 +302,7 @@ function FirmRequestPage({ locale }: { locale: Locale }) {
   return (
     <>
       <Hero title={t.request.title} subtitle={t.request.text} primary={t.primary} />
-      <Section tone="cream">
+      <Section id={locale === "fr" ? "formulaire-demande" : "request-form"} tone="cream">
         <Container>
           <DetailBlock block={t.detail} />
           <Card>
@@ -396,7 +396,7 @@ function PostOpportunityPage({ locale }: { locale: Locale }) {
   return (
     <>
       <Hero title={t.title} subtitle={t.subtitle} />
-      <Section tone="cream">
+      <Section id={locale === "fr" ? "formulaire-offre" : "opportunity-form"} tone="cream">
         <Container>
           <Card>
             <OpportunityPostingForm locale={locale} />
@@ -411,7 +411,7 @@ function LoginPage({ locale }: { locale: Locale }) {
   const t = content[locale].pages.login;
   return (
     <>
-      <Hero title={t.title} subtitle={t.subtitle} primary={t.primary} />
+      <Hero title={t.title} subtitle={t.subtitle} />
     </>
   );
 }
@@ -455,7 +455,7 @@ function ContactPage({ locale }: { locale: Locale }) {
   return (
     <>
       <Hero title={t.title} subtitle={t.subtitle} />
-      <Section tone="cream">
+      <Section id={locale === "fr" ? "formulaire-contact" : "contact-form"} tone="cream">
         <Container>
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
             <Card>

@@ -101,7 +101,7 @@ export function OpportunityBoard({
             </div>
             <div className="flex flex-col gap-3 md:min-w-44 md:items-stretch md:justify-center">
               <ButtonLink href={`${basePath}/${item.slug}`} variant="secondary">{copy.view}</ButtonLink>
-              <ButtonLink href={`${applyPath}?opportunity=${item.slug}`}>{copy.apply}</ButtonLink>
+              <ButtonLink href={applyPath}>{copy.apply}</ButtonLink>
             </div>
           </Card>
         )) : (

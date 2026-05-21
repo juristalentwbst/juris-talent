@@ -1,6 +1,6 @@
 import "server-only";
 
-import { Resend } from "resend";
+import { Resend, type Attachment } from "resend";
 
 type EmailField = {
   label: string;
@@ -17,6 +17,7 @@ export type FormEmail = {
   heading: string;
   replyTo?: string;
   sections: EmailSection[];
+  attachments?: Attachment[];
 };
 
 const resendSender = "Juris Talent <onboarding@resend.dev>";
@@ -98,7 +99,8 @@ export async function sendFormEmail(email: FormEmail) {
     subject: email.subject,
     text: renderText(email),
     html: renderHtml(email),
-    replyTo: email.replyTo
+    replyTo: email.replyTo,
+    attachments: email.attachments
   });
 
   if (result.error) {

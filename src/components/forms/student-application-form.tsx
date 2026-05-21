@@ -31,16 +31,31 @@ export function StudentApplicationForm({ locale }: { locale: Locale }) {
   async function onSubmit(values: FormValues) {
     setInvalidSubmit(false);
     setSubmitError(null);
-    const payload = { ...values };
-    delete payload.cv;
+    const formData = new FormData();
+
+    Object.entries(values).forEach(([key, value]) => {
+      if (key === "cv") {
+        if (typeof FileList !== "undefined" && value instanceof FileList && value.length > 0) {
+          formData.append("cv", value[0]);
+        }
+        return;
+      }
+
+      if (typeof value === "boolean") {
+        formData.append(key, String(value));
+        return;
+      }
+
+      if (value) {
+        formData.append(key, String(value));
+      }
+    });
+    formData.append("submittedLocale", locale);
+    formData.append("sourcePath", window.location.pathname + window.location.search);
+
     const response = await fetch("/api/forms/student", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...payload,
-        submittedLocale: locale,
-        sourcePath: window.location.pathname + window.location.search
-      })
+      body: formData
     });
 
     if (!response.ok) {
@@ -126,7 +141,7 @@ export function StudentApplicationForm({ locale }: { locale: Locale }) {
         <Field label={t.forms.student.fields.cv} error={errors.cv?.message?.toString()}>
           <Input {...register("cv")} type="file" accept=".pdf,.doc,.docx" />
           <p className="mt-2 text-xs leading-5 text-navy/60">{t.common.fileHint}</p>
-          <p className="mt-2 text-xs leading-5 text-navy/60">{t.common.cvDisclaimer}</p>
+          {t.common.cvDisclaimer ? <p className="mt-2 text-xs leading-5 text-navy/60">{t.common.cvDisclaimer}</p> : null}
         </Field>
       </div>
       <Field label={t.forms.student.fields.message} error={errors.message?.message}>

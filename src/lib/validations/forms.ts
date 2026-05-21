@@ -1,5 +1,13 @@
 import { z } from "zod";
 
+const maxCvFileSize = 5 * 1024 * 1024;
+const acceptedCvMimeTypes = [
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+];
+const acceptedCvExtensions = [".pdf", ".doc", ".docx"];
+
 function requiredText(requiredMessage: string, min = 2) {
   return z.string({ required_error: requiredMessage }).min(min, requiredMessage);
 }
@@ -13,9 +21,23 @@ function cvSchema(fileMessage: string) {
         return true;
       }
 
-      return ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"].includes(value[0].type);
+      const file = value[0];
+      const lowerName = file.name.toLowerCase();
+      const hasAcceptedType = acceptedCvMimeTypes.includes(file.type);
+      const hasAcceptedExtension = acceptedCvExtensions.some((extension) => lowerName.endsWith(extension));
+
+      return file.size <= maxCvFileSize && (hasAcceptedType || hasAcceptedExtension);
     }, fileMessage);
 }
+
+const cvAttachmentSchema = z
+  .object({
+    filename: requiredText("CV filename is required.", 1),
+    content: requiredText("CV content is required.", 1),
+    contentType: z.string().optional(),
+    size: z.number().max(maxCvFileSize).optional()
+  })
+  .optional();
 
 export const formMetadataSchema = z.object({
   submittedLocale: z.enum(["fr", "en"]),
@@ -126,10 +148,11 @@ export function opportunityPostingSchema(errors: {
 export const studentApplicationEmailSchema = studentApplicationSchema({
   required: "This field is required.",
   email: "Please enter a valid email address.",
-  file: "Please upload an accepted file format.",
+  file: "Please upload a PDF, DOC, or DOCX file up to 5MB.",
   consent: "Required consent is missing."
 })
   .omit({ cv: true })
+  .extend({ cvAttachment: cvAttachmentSchema })
   .merge(formMetadataSchema);
 
 export const cabinetRequestEmailSchema = firmRequestSchema({

@@ -8,7 +8,8 @@ export function Container({ className, ...props }: HTMLAttributes<HTMLDivElement
 export function Section({
   className,
   children,
-  tone = "light"
+  tone = "light",
+  ...props
 }: HTMLAttributes<HTMLElement> & {
   children: ReactNode;
   tone?: "light" | "cream" | "navy";
@@ -19,7 +20,7 @@ export function Section({
     navy: "bg-navy text-white"
   };
 
-  return <section className={cn("py-16 sm:py-20", tones[tone], className)}>{children}</section>;
+  return <section className={cn("py-16 sm:py-20", tones[tone], className)} {...props}>{children}</section>;
 }
 
 export function SectionHeading({
