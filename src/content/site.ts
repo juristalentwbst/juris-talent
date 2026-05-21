@@ -267,15 +267,14 @@ export const content: Record<Locale, SiteContent> = {
       firmCta: "Présenter un besoin",
       required: "obligatoire",
       selectPlaceholder: "Sélectionner",
-      fileHint: "PDF, DOC ou DOCX. Stockage réel à connecter dans une phase future.",
+      fileHint: "Formats acceptés : PDF, DOC, DOCX. Taille maximale : 5 Mo.",
       privacyNoticeStudent:
         "En soumettant ce formulaire, vous autorisez Juris Talent à recueillir, utiliser et examiner les renseignements fournis afin d'évaluer votre profil, de vous contacter au besoin et de faciliter une mise en relation potentielle avec des cabinets ou employeurs juridiques.",
       privacyNoticeFirm:
         "En soumettant ce formulaire, vous autorisez Juris Talent à recueillir et utiliser les renseignements fournis afin de comprendre votre besoin, communiquer avec vous et faciliter une mise en relation potentielle avec des candidats ou talents juridiques.",
       privacyNoticeContact:
         "Les renseignements transmis dans ce formulaire seront utilisés uniquement pour traiter votre demande et vous répondre. Ne transmettez pas de renseignements confidentiels, sensibles ou non nécessaires dans ce formulaire.",
-      cvDisclaimer:
-        "Veuillez téléverser uniquement les documents nécessaires à l'évaluation de votre profil professionnel. Évitez d'inclure des renseignements sensibles ou non pertinents. En transmettant un CV ou tout autre document, vous confirmez avoir le droit de le partager avec Juris Talent.",
+      cvDisclaimer: "",
       nonResponsibility:
         "Juris Talent agit uniquement comme plateforme intermédiaire de mise en relation. Juris Talent ne vérifie pas de manière exhaustive toutes les informations transmises par les utilisateurs et ne garantit pas l'exactitude complète, la disponibilité, la compétence, la performance, la conduite ou l'adéquation d'un candidat ou d'un cabinet. Toute décision liée à une entrevue, une offre, une collaboration, un stage, un emploi ou une embauche relève exclusivement des utilisateurs concernés."
     },
@@ -337,15 +336,15 @@ export const content: Record<Locale, SiteContent> = {
           title: "Prêt à avancer vers la bonne opportunité juridique ?",
           text: "Que vous soyez étudiant en droit ou cabinet à la recherche de talents, Juris Talent vous aide à franchir la prochaine étape avec confiance.",
           student: { label: "Soumettre ma candidature", href: "/fr/postuler" },
-          firm: { label: "Présenter un besoin de recrutement", href: "/fr/cabinet/demander-des-profils" }
+          firm: { label: "Présenter un besoin de recrutement", href: "/fr/cabinet/demander-des-profils#formulaire-demande" }
         }
       },
       student: {
         title: "Lancez votre carrière juridique avec plus de clarté.",
         subtitle:
           "Juris Talent aide les étudiants en droit à se rendre visibles auprès de cabinets et d'employeurs juridiques à la recherche de profils motivés, sérieux et prometteurs.",
-        primary: { label: "Postuler maintenant", href: "/fr/postuler" },
-        secondary: { label: "Voir les opportunités", href: "/fr/offres" },
+        primary: { label: "Postuler maintenant", href: "/fr/postuler#formulaire" },
+        secondary: { label: "Voir les offres", href: "/fr/offres" },
         benefits: [
           {
             title: "Accès à des opportunités ciblées",
@@ -433,14 +432,14 @@ export const content: Record<Locale, SiteContent> = {
         final: {
           title: "Votre parcours juridique mérite d'être présenté avec sérieux.",
           text: "Soumettez votre profil et faites un pas de plus vers des opportunités mieux alignées avec vos ambitions.",
-          cta: { label: "Créer mon profil candidat", href: "/fr/postuler" }
+          cta: { label: "Créer mon profil candidat", href: "/fr/postuler#formulaire" }
         }
       },
       firm: {
         title: "Recrutez la relève juridique avec confiance.",
         subtitle:
           "Juris Talent aide les cabinets et employeurs juridiques à identifier des étudiants et jeunes profils juridiques plus pertinents, mieux présentés et alignés avec leurs besoins.",
-        primary: { label: "Demander des profils", href: "/fr/cabinet/demander-des-profils" },
+        primary: { label: "Demander des profils", href: "/fr/cabinet/demander-des-profils#formulaire-demande" },
         secondary: { label: "Publier une opportunité", href: "/fr/cabinet/publier-une-offre" },
         benefits: [
           {
@@ -523,7 +522,7 @@ export const content: Record<Locale, SiteContent> = {
         final: {
           title: "Trouvez des profils juridiques plus pertinents, plus rapidement.",
           text: "Présentez votre besoin à Juris Talent et simplifiez votre prochaine recherche de talents.",
-          cta: { label: "Demander des profils", href: "/fr/cabinet/demander-des-profils" }
+          cta: { label: "Demander des profils", href: "/fr/cabinet/demander-des-profils#formulaire-demande" }
         }
       },
       opportunities: {
@@ -558,8 +557,7 @@ export const content: Record<Locale, SiteContent> = {
       },
       login: {
         title: "Connexion",
-        subtitle:
-          "Les espaces candidats et cabinets seront disponibles dans une phase future. Pour le moment, vous pouvez soumettre une candidature, demander des profils ou publier une opportunité.",
+        subtitle: "L'accès aux espaces privés sera disponible dans une prochaine phase.",
         primary: { label: "Nous contacter", href: "/fr/contact" }
       },
       about: {
@@ -589,7 +587,7 @@ export const content: Record<Locale, SiteContent> = {
         final: {
           title: "Construisons des connexions juridiques plus pertinentes.",
           student: { label: "Soumettre ma candidature", href: "/fr/postuler" },
-          firm: { label: "Présenter un besoin", href: "/fr/cabinet/demander-des-profils" }
+          firm: { label: "Présenter un besoin", href: "/fr/cabinet/demander-des-profils#formulaire-demande" }
         }
       },
       contact: {
@@ -598,7 +596,7 @@ export const content: Record<Locale, SiteContent> = {
           "Une question, une demande ou un besoin particulier ? Communiquez avec notre équipe afin que nous puissions vous orienter vers la bonne démarche.",
         info: [
           { title: "Courriel", text: "contact@juristalent.ca" },
-          { title: "Téléphone", text: "À confirmer" },
+          { title: "Téléphone", text: "438-410-4224" },
           { title: "Localisation", text: "Québec, Canada" },
           { title: "Heures de réponse", text: "Nous répondons généralement aux demandes dans un délai de 2 à 3 jours ouvrables." }
         ]
@@ -663,7 +661,7 @@ export const content: Record<Locale, SiteContent> = {
         general: "Une erreur est survenue. Veuillez réessayer dans quelques instants.",
         required: "Veuillez remplir tous les champs obligatoires avant d'envoyer le formulaire.",
         email: "Veuillez entrer une adresse courriel valide.",
-        file: "Veuillez téléverser un fichier au format accepté.",
+        file: "Veuillez téléverser un fichier PDF, DOC ou DOCX de 5 Mo maximum.",
         consent: "Vous devez accepter les conditions requises avant de soumettre ce formulaire."
       },
       student: {
@@ -786,15 +784,14 @@ export const content: Record<Locale, SiteContent> = {
       firmCta: "Share a hiring need",
       required: "required",
       selectPlaceholder: "Select",
-      fileHint: "PDF, DOC, or DOCX. Real storage to be connected in a future phase.",
+      fileHint: "Accepted formats: PDF, DOC, DOCX. Maximum size: 5MB.",
       privacyNoticeStudent:
         "By submitting this form, you authorize Juris Talent to collect, use, and review the information provided in order to assess your profile, contact you where appropriate, and facilitate a potential connection with law firms or legal employers.",
       privacyNoticeFirm:
         "By submitting this form, you authorize Juris Talent to collect and use the information provided to understand your need, communicate with you, and facilitate a potential connection with candidates or legal talent.",
       privacyNoticeContact:
         "The information submitted through this form will be used only to process your request and respond to you. Please do not submit confidential, sensitive, or unnecessary information through this form.",
-      cvDisclaimer:
-        "Please upload only documents necessary to assess your professional profile. Avoid including sensitive or irrelevant information. By submitting a CV or any other document, you confirm that you have the right to share it with Juris Talent.",
+      cvDisclaimer: "",
       nonResponsibility:
         "Juris Talent acts solely as an intermediary connection platform. Juris Talent does not exhaustively verify all information submitted by users and does not guarantee the complete accuracy, availability, competence, performance, conduct, or suitability of any candidate or law firm. Any decision relating to an interview, offer, collaboration, internship, job, or hire remains exclusively the responsibility of the users concerned."
     },
@@ -856,14 +853,14 @@ export const content: Record<Locale, SiteContent> = {
           title: "Ready to move toward the right legal opportunity?",
           text: "Whether you are a law student or a firm looking for talent, Juris Talent helps you take the next step with confidence.",
           student: { label: "Submit my application", href: "/en/apply" },
-          firm: { label: "Share a hiring need", href: "/en/law-firms/request-profiles" }
+          firm: { label: "Share a hiring need", href: "/en/law-firms/request-profiles#request-form" }
         }
       },
       student: {
         title: "Start your legal career with greater clarity.",
         subtitle:
           "Juris Talent helps law students become visible to firms and legal employers looking for motivated, serious, and promising profiles.",
-        primary: { label: "Apply now", href: "/en/apply" },
+        primary: { label: "Apply now", href: "/en/apply#application-form" },
         secondary: { label: "View opportunities", href: "/en/opportunities" },
         benefits: [
           { title: "Access targeted legal opportunities", text: "Discover opportunities that better match your profile, level, and areas of interest." },
@@ -915,14 +912,14 @@ export const content: Record<Locale, SiteContent> = {
         final: {
           title: "Your legal path deserves to be presented professionally.",
           text: "Submit your profile and take one step closer to opportunities aligned with your ambitions.",
-          cta: { label: "Create my candidate profile", href: "/en/apply" }
+          cta: { label: "Create my candidate profile", href: "/en/apply#application-form" }
         }
       },
       firm: {
         title: "Recruit the next generation of legal talent with confidence.",
         subtitle:
           "Juris Talent helps law firms and legal employers identify more relevant, better-presented candidates aligned with their needs.",
-        primary: { label: "Request profiles", href: "/en/law-firms/request-profiles" },
+        primary: { label: "Request profiles", href: "/en/law-firms/request-profiles#request-form" },
         secondary: { label: "Post an opportunity", href: "/en/law-firms/post-opportunity" },
         benefits: [
           { title: "Save time when searching for talent", text: "Receive structured information to evaluate profiles that match your criteria more efficiently." },
@@ -972,7 +969,7 @@ export const content: Record<Locale, SiteContent> = {
         final: {
           title: "Find more relevant legal profiles, faster.",
           text: "Share your need with Juris Talent and simplify your next search for talent.",
-          cta: { label: "Request profiles", href: "/en/law-firms/request-profiles" }
+          cta: { label: "Request profiles", href: "/en/law-firms/request-profiles#request-form" }
         }
       },
       opportunities: {
@@ -1007,8 +1004,7 @@ export const content: Record<Locale, SiteContent> = {
       },
       login: {
         title: "Login",
-        subtitle:
-          "Candidate and law firm spaces will be available in a future phase. For now, you can submit an application, request profiles, or post an opportunity.",
+        subtitle: "Private account access will be available in a future phase.",
         primary: { label: "Contact us", href: "/en/contact" }
       },
       about: {
@@ -1038,7 +1034,7 @@ export const content: Record<Locale, SiteContent> = {
         final: {
           title: "Let's build more relevant legal connections.",
           student: { label: "Submit my application", href: "/en/apply" },
-          firm: { label: "Share a hiring need", href: "/en/law-firms/request-profiles" }
+          firm: { label: "Share a hiring need", href: "/en/law-firms/request-profiles#request-form" }
         }
       },
       contact: {
@@ -1047,7 +1043,7 @@ export const content: Record<Locale, SiteContent> = {
           "Have a question, request, or specific need? Contact our team so we can guide you toward the right next step.",
         info: [
           { title: "Email", text: "contact@juristalent.ca" },
-          { title: "Phone", text: "To be confirmed" },
+          { title: "Phone", text: "438-410-4224" },
           { title: "Location", text: "Québec, Canada" },
           { title: "Response expectation", text: "We generally respond within 2 to 3 business days." }
         ]
@@ -1112,7 +1108,7 @@ export const content: Record<Locale, SiteContent> = {
         general: "Something went wrong. Please try again in a few moments.",
         required: "Please complete all required fields before submitting the form.",
         email: "Please enter a valid email address.",
-        file: "Please upload a file in an accepted format.",
+        file: "Please upload a PDF, DOC, or DOCX file up to 5MB.",
         consent: "You must accept the required terms before submitting this form."
       },
       student: {

@@ -48,6 +48,9 @@ export function SiteFooter({ locale }: { locale: Locale }) {
               <a href="mailto:contact@juristalent.ca" className="text-sm text-white/75 transition hover:text-white">
                 contact@juristalent.ca
               </a>
+              <a href="tel:+14384104224" className="text-sm text-white/75 transition hover:text-white">
+                {locale === "fr" ? "Téléphone : 438-410-4224" : "Phone: 438-410-4224"}
+              </a>
               <LanguageToggle
                 locale={locale}
                 pageKey="home"
