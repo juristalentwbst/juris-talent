@@ -3,6 +3,7 @@ import { content } from "@/content/site";
 import { localizedHref } from "@/lib/routes";
 import type { Locale } from "@/types/site";
 import { Container } from "@/components/ui/section";
+import { LanguageToggle } from "./language-toggle";
 import { Logo } from "./logo";
 
 export function SiteFooter({ locale }: { locale: Locale }) {
@@ -31,6 +32,9 @@ export function SiteFooter({ locale }: { locale: Locale }) {
                   {item.label}
                 </Link>
               ))}
+              <Link href={localizedHref("login", locale)} className="text-sm text-white/75 transition hover:text-white">
+                {t.header.login}
+              </Link>
             </div>
           </div>
           <div>
@@ -41,6 +45,14 @@ export function SiteFooter({ locale }: { locale: Locale }) {
                   {item.label}
                 </Link>
               ))}
+              <a href="mailto:contact@juristalent.ca" className="text-sm text-white/75 transition hover:text-white">
+                contact@juristalent.ca
+              </a>
+              <LanguageToggle
+                locale={locale}
+                pageKey="home"
+                className="w-fit rounded-brand border border-white/25 px-3 py-2 text-sm font-bold text-white/85 transition hover:border-gold hover:text-white"
+              />
             </div>
           </div>
         </div>
