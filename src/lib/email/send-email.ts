@@ -19,8 +19,7 @@ export type FormEmail = {
   sections: EmailSection[];
 };
 
-const fallbackRecipient = "contact@juristalent.ca";
-const fallbackFrom = "Juris Talent <notifications@juristalent.ca>";
+const resendSender = "Juris Talent <onboarding@resend.dev>";
 
 function formatValue(value?: boolean | null | string) {
   if (typeof value === "boolean") {
@@ -81,16 +80,20 @@ function renderHtml(email: FormEmail) {
 
 export async function sendFormEmail(email: FormEmail) {
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_EMAIL || fallbackRecipient;
-  const from = process.env.RESEND_FROM_EMAIL || fallbackFrom;
+  const to = process.env.CONTACT_EMAIL;
 
   if (!apiKey) {
     throw new Error("RESEND_API_KEY is not configured.");
   }
 
+  if (!to) {
+    throw new Error("CONTACT_EMAIL is not configured.");
+  }
+
+  console.log("Sending email through Resend");
   const resend = new Resend(apiKey);
   const result = await resend.emails.send({
-    from,
+    from: resendSender,
     to,
     subject: email.subject,
     text: renderText(email),
@@ -102,5 +105,6 @@ export async function sendFormEmail(email: FormEmail) {
     throw new Error(result.error.message);
   }
 
+  console.log("Email sent successfully");
   return result.data;
 }

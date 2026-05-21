@@ -5,6 +5,7 @@ import { studentApplicationEmailSchema } from "@/lib/validations/forms";
 export const runtime = "nodejs";
 
 export async function POST(request: Request) {
+  console.log("Student form POST received");
   try {
     const body = await request.json();
     const parsed = studentApplicationEmailSchema.safeParse(body);
@@ -62,6 +63,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (error) {
+    console.error("Email failed");
     console.error("Student application email failed", error);
     return NextResponse.json({ message: "Unable to send student application." }, { status: 500 });
   }

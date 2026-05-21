@@ -26,7 +26,7 @@ CONTACT_EMAIL=contact@juristalent.ca
 
 To activate email delivery in production, add the Resend API key and `CONTACT_EMAIL` in Vercel Project Settings -> Environment Variables, then redeploy.
 
-Optional: set `RESEND_FROM_EMAIL` if the project uses a verified Resend sender address other than `Juris Talent <notifications@juristalent.ca>`.
+The MVP sender is `Juris Talent <onboarding@resend.dev>`. Do not use a `juristalent.ca` sender address until the domain is verified in Resend.
 
 ## MVP Scope
 

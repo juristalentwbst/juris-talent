@@ -5,6 +5,7 @@ import { cabinetRequestEmailSchema } from "@/lib/validations/forms";
 export const runtime = "nodejs";
 
 export async function POST(request: Request) {
+  console.log("Cabinet request form POST received");
   try {
     const body = await request.json();
     const parsed = cabinetRequestEmailSchema.safeParse(body);
@@ -56,6 +57,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (error) {
+    console.error("Email failed");
     console.error("Cabinet request email failed", error);
     return NextResponse.json({ message: "Unable to send cabinet request." }, { status: 500 });
   }
