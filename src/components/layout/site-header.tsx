@@ -14,13 +14,14 @@ import { Logo } from "./logo";
 export function SiteHeader({ locale, pageKey }: { locale: Locale; pageKey: PageKey }) {
   const [open, setOpen] = useState(false);
   const t = content[locale];
+  const headerNav = t.nav.filter((item) => item.key !== "home");
 
   return (
     <header className="sticky top-0 z-40 border-b border-warmgray/60 bg-cream/95 backdrop-blur">
       <Container className="flex min-h-20 items-center justify-between gap-4">
         <Logo locale={locale} priority />
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
-          {t.nav.map((item) => (
+          {headerNav.map((item) => (
             <Link key={item.href} href={item.href} className="text-sm font-semibold text-navy/80 transition hover:text-navy">
               {item.label}
             </Link>
@@ -29,6 +30,9 @@ export function SiteHeader({ locale, pageKey }: { locale: Locale; pageKey: PageK
         <div className="hidden items-center gap-2 lg:flex">
           <ButtonLink href={localizedHref("firmRequest", locale)} variant="secondary" className="px-4">
             {t.header.firmAccess}
+          </ButtonLink>
+          <ButtonLink href={localizedHref("login", locale)} className="px-4">
+            {t.header.login}
           </ButtonLink>
           <LanguageToggle
             locale={locale}
@@ -50,7 +54,7 @@ export function SiteHeader({ locale, pageKey }: { locale: Locale; pageKey: PageK
       {open ? (
         <div id="mobile-navigation" className="border-t border-warmgray/60 bg-cream lg:hidden">
           <Container className="grid gap-3 py-5">
-            {t.nav.map((item) => (
+            {headerNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -64,6 +68,7 @@ export function SiteHeader({ locale, pageKey }: { locale: Locale; pageKey: PageK
               <ButtonLink href={localizedHref("firmRequest", locale)} variant="secondary">
                 {t.header.firmAccess}
               </ButtonLink>
+              <ButtonLink href={localizedHref("login", locale)}>{t.header.login}</ButtonLink>
               <LanguageToggle
                 locale={locale}
                 pageKey={pageKey}

@@ -27,7 +27,7 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex min-h-11 items-center justify-center rounded-brand px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60",
+        "inline-flex min-h-11 w-full items-center justify-center rounded-brand px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto",
         styles[variant],
         className
       )}
@@ -44,7 +44,7 @@ export function ButtonLink({
   return (
     <Link
       className={cn(
-        "inline-flex min-h-11 items-center justify-center rounded-brand px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2",
+        "inline-flex min-h-11 w-full items-center justify-center rounded-brand px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 sm:w-auto",
         styles[variant],
         className
       )}

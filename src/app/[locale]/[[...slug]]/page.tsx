@@ -1,16 +1,19 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { BriefcaseBusiness, Clock3, GraduationCap, Scale, ShieldCheck, Sparkles, TrendingUp } from "lucide-react";
+import { BriefcaseBusiness, GraduationCap, Scale, ShieldCheck, Sparkles, TrendingUp } from "lucide-react";
 import { CabinetRequestForm } from "@/components/forms/cabinet-request-form";
 import { ContactForm } from "@/components/forms/contact-form";
+import { OpportunityPostingForm } from "@/components/forms/opportunity-posting-form";
 import { StudentApplicationForm } from "@/components/forms/student-application-form";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { OpportunityBoard } from "@/components/opportunities/opportunity-board";
 import { ButtonLink } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { content } from "@/content/site";
-import { getPageKey, isLocale, localizedHref, routeMap } from "@/lib/routes";
+import { getOpportunityBySlug, opportunities } from "@/data/opportunities.mock";
+import { getOpportunitySlug, getPageKey, isLocale, localizedHref, routeMap } from "@/lib/routes";
 import type { Locale, PageKey } from "@/types/site";
 
 type PageProps = {
@@ -29,11 +32,64 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!pageKey) {
     return {};
   }
+  const canonicalPath = `/${[rawLocale, ...(slug ?? [])].join("/")}`;
+  const title = getMetaTitle(rawLocale, pageKey, getOpportunitySlug(rawLocale, slug));
+  const description = getMetaDescription(rawLocale, pageKey);
 
   return {
-    title: content[rawLocale].meta.title,
-    description: content[rawLocale].meta.description
+    title,
+    description,
+    alternates: {
+      canonical: canonicalPath
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonicalPath,
+      images: ["/logo/juris-talent-logo.png"]
+    }
   };
+}
+
+function getMetaTitle(locale: Locale, pageKey: PageKey, opportunitySlug?: string) {
+  if (pageKey === "home") {
+    return locale === "fr"
+      ? "Juris Talent | Relève juridique et cabinets au Québec"
+      : "Juris Talent | Legal Talent and Law Firms in Québec";
+  }
+  if (pageKey === "opportunityDetail") {
+    const opportunity = getOpportunityBySlug(opportunitySlug);
+    return opportunity ? opportunity.title[locale] : content[locale].pages.opportunities.title;
+  }
+  const labels: Record<PageKey, Record<Locale, string>> = {
+    home: { fr: "Juris Talent", en: "Juris Talent" },
+    student: { fr: "Étudiant", en: "Student" },
+    opportunities: { fr: "Opportunités juridiques", en: "Legal Opportunities" },
+    opportunityDetail: { fr: "Offre", en: "Opportunity" },
+    apply: { fr: "Postuler", en: "Apply" },
+    firm: { fr: "Cabinet", en: "Law Firms" },
+    firmRequest: { fr: "Demander des profils", en: "Request Profiles" },
+    postOpportunity: { fr: "Publier une opportunité", en: "Post an Opportunity" },
+    about: { fr: "À propos", en: "About" },
+    contact: { fr: "Contact", en: "Contact" },
+    login: { fr: "Connexion", en: "Login" },
+    terms: { fr: "Conditions d'utilisation", en: "Terms of Use" },
+    privacy: { fr: "Politique de confidentialité", en: "Privacy Policy" },
+    legal: { fr: "Avis légal", en: "Legal Notice" }
+  };
+  return labels[pageKey][locale];
+}
+
+function getMetaDescription(locale: Locale, pageKey: PageKey) {
+  if (pageKey === "home") {
+    return locale === "fr"
+      ? "Juris Talent met en relation les étudiants en droit, les talents juridiques et les cabinets au Québec grâce à une plateforme claire, professionnelle et ciblée."
+      : "Juris Talent connects law students, legal talent, and law firms in Québec through a clear, professional, and targeted platform.";
+  }
+  if (pageKey === "opportunities" || pageKey === "opportunityDetail") {
+    return content[locale].pages.opportunities.subtitle;
+  }
+  return content[locale].meta.description;
 }
 
 export function generateStaticParams() {
@@ -42,6 +98,11 @@ export function generateStaticParams() {
       locale,
       slug: href.split("/").filter(Boolean).slice(1)
     }))
+  ).concat(
+    opportunities.flatMap((opportunity) => [
+      { locale: "fr", slug: ["offres", opportunity.slug] },
+      { locale: "en", slug: ["opportunities", opportunity.slug] }
+    ])
   );
 }
 
@@ -60,14 +121,14 @@ export default async function LocalizedPage({ params }: PageProps) {
     <>
       <SiteHeader locale={locale} pageKey={pageKey} />
       <main>
-        <PageSwitch locale={locale} pageKey={pageKey} />
+        <PageSwitch locale={locale} pageKey={pageKey} slug={slug} />
       </main>
       <SiteFooter locale={locale} />
     </>
   );
 }
 
-function PageSwitch({ locale, pageKey }: { locale: Locale; pageKey: PageKey }) {
+function PageSwitch({ locale, pageKey, slug }: { locale: Locale; pageKey: PageKey; slug?: string[] }) {
   switch (pageKey) {
     case "home":
       return <HomePage locale={locale} />;
@@ -75,16 +136,22 @@ function PageSwitch({ locale, pageKey }: { locale: Locale; pageKey: PageKey }) {
       return <StudentPage locale={locale} />;
     case "opportunities":
       return <OpportunitiesPage locale={locale} />;
+    case "opportunityDetail":
+      return <OpportunityDetailPage locale={locale} slug={getOpportunitySlug(locale, slug)} />;
     case "apply":
       return <ApplyPage locale={locale} />;
     case "firm":
       return <FirmPage locale={locale} />;
     case "firmRequest":
       return <FirmRequestPage locale={locale} />;
+    case "postOpportunity":
+      return <PostOpportunityPage locale={locale} />;
     case "about":
       return <AboutPage locale={locale} />;
     case "contact":
       return <ContactPage locale={locale} />;
+    case "login":
+      return <LoginPage locale={locale} />;
     case "terms":
     case "privacy":
     case "legal":
@@ -109,6 +176,9 @@ function HomePage({ locale }: { locale: Locale }) {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href={t.primary.href}>{t.primary.label}</ButtonLink>
                 <ButtonLink href={t.secondary.href} variant="secondary">{t.secondary.label}</ButtonLink>
+                <ButtonLink href={localizedHref("postOpportunity", locale)} variant="secondary">
+                  {locale === "fr" ? "Publier une opportunité" : "Post an opportunity"}
+                </ButtonLink>
               </div>
             </div>
             <Card className="border-gold/40 bg-white p-8">
@@ -248,19 +318,100 @@ function OpportunitiesPage({ locale }: { locale: Locale }) {
   const t = content[locale].pages.opportunities;
   return (
     <>
-      <Hero title={t.title} subtitle={t.subtitle} primary={t.cta} />
+      <Hero title={t.title} subtitle={t.subtitle} primary={{ label: content[locale].common.studentCta, href: localizedHref("apply", locale) }} secondary={t.firmCta} />
       <Section>
         <Container>
-          <Card className="mx-auto max-w-3xl border-gold/40 bg-cream p-8 text-center sm:p-10">
-            <div className="mx-auto mb-6 inline-flex h-14 w-14 items-center justify-center rounded-brand bg-white text-gold">
-              <Clock3 aria-hidden="true" />
+          <OpportunityBoard locale={locale} copy={t} />
+          <Card className="mt-8 bg-navy text-white">
+            <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+              <h2 className="font-heading text-3xl leading-tight">{t.firmCta.title}</h2>
+              <ButtonLink href={t.firmCta.href}>{t.firmCta.label}</ButtonLink>
             </div>
-            <h2 className="font-heading text-4xl leading-tight text-navy">{t.emptyTitle}</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-navy/75">{t.emptyText}</p>
-            <ButtonLink href={t.cta.href} className="mt-7">{t.cta.label}</ButtonLink>
           </Card>
         </Container>
       </Section>
+    </>
+  );
+}
+
+function OpportunityDetailPage({ locale, slug }: { locale: Locale; slug: string | undefined }) {
+  const opportunity = getOpportunityBySlug(slug);
+  const t = content[locale].pages.opportunities;
+  if (!opportunity) {
+    notFound();
+  }
+
+  const baseApply = localizedHref("apply", locale);
+  return (
+    <>
+      <Hero
+        title={opportunity.title[locale]}
+        subtitle={`${opportunity.firmName} · ${opportunity.location} · ${opportunity.opportunityType[locale]}`}
+        primary={{ label: t.apply === "Postuler" ? "Postuler à cette offre" : "Apply to this opportunity", href: `${baseApply}?opportunity=${opportunity.slug}` }}
+        secondary={{ label: locale === "fr" ? "Retour aux offres" : "Back to opportunities", href: localizedHref("opportunities", locale) }}
+      />
+      <Section>
+        <Container>
+          <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
+            <div className="space-y-6">
+              <Card>
+                <h2 className="font-heading text-3xl text-navy">{locale === "fr" ? "Description" : "Description"}</h2>
+                <p className="mt-4 text-base leading-7 text-navy/75">{opportunity.description[locale]}</p>
+              </Card>
+              <DetailList title={locale === "fr" ? "Responsabilités" : "Responsibilities"} items={opportunity.responsibilities.map((item) => item[locale])} />
+              <DetailList title={locale === "fr" ? "Exigences" : "Requirements"} items={opportunity.requirements.map((item) => item[locale])} />
+              <Card>
+                <h2 className="font-heading text-3xl text-navy">{locale === "fr" ? "Profil recherché" : "Preferred profile"}</h2>
+                <p className="mt-4 text-base leading-7 text-navy/75">{opportunity.preferredProfile[locale]}</p>
+              </Card>
+              <DetailList title={locale === "fr" ? "Documents requis" : "Documents required"} items={opportunity.documentsRequired.map((item) => item[locale])} />
+              <p className="rounded-brand border border-gold/40 bg-cream p-4 text-sm leading-6 text-navy/70">{t.disclaimer}</p>
+            </div>
+            <aside className="h-fit rounded-brand border border-warmgray bg-cream p-5">
+              <h2 className="font-heading text-2xl text-navy">{locale === "fr" ? "Détails de l'offre" : "Opportunity details"}</h2>
+              <dl className="mt-5 grid gap-4 text-sm">
+                <MetaRow label={locale === "fr" ? "Cabinet" : "Law firm"} value={opportunity.firmName} />
+                <MetaRow label={t.filters.location} value={opportunity.location} />
+                <MetaRow label={t.filters.opportunityType} value={opportunity.opportunityType[locale]} />
+                <MetaRow label={t.filters.practiceArea} value={opportunity.practiceArea[locale]} />
+                <MetaRow label={t.filters.workMode} value={opportunity.workMode[locale]} />
+                <MetaRow label={t.filters.studyLevel} value={opportunity.studyLevel[locale]} />
+                <MetaRow label={t.filters.language} value={opportunity.languageRequirements[locale]} />
+                <MetaRow label={locale === "fr" ? "Début" : "Start date"} value={opportunity.startDate[locale]} />
+                <MetaRow label={locale === "fr" ? "Date limite" : "Deadline"} value={opportunity.applicationDeadline[locale]} />
+              </dl>
+              <ButtonLink href={`${baseApply}?opportunity=${opportunity.slug}`} className="mt-6 w-full">
+                {t.apply === "Postuler" ? "Postuler à cette offre" : "Apply to this opportunity"}
+              </ButtonLink>
+            </aside>
+          </div>
+        </Container>
+      </Section>
+    </>
+  );
+}
+
+function PostOpportunityPage({ locale }: { locale: Locale }) {
+  const t = content[locale].pages.postOpportunity;
+  return (
+    <>
+      <Hero title={t.title} subtitle={t.subtitle} />
+      <Section tone="cream">
+        <Container>
+          <Card>
+            <OpportunityPostingForm locale={locale} />
+          </Card>
+        </Container>
+      </Section>
+    </>
+  );
+}
+
+function LoginPage({ locale }: { locale: Locale }) {
+  const t = content[locale].pages.login;
+  return (
+    <>
+      <Hero title={t.title} subtitle={t.subtitle} primary={t.primary} />
     </>
   );
 }
@@ -407,8 +558,8 @@ function FeatureSections({
           </div>
           <p className="mt-8 text-sm text-navy/60">
             {locale === "fr"
-              ? "Juris Talent demeure une agence de mise en relation / courtage et ne garantit aucun résultat."
-              : "Juris Talent remains a matching and brokerage agency and does not guarantee any outcome."}
+              ? "Juris Talent demeure une plateforme de mise en relation et ne garantit aucun résultat."
+              : "Juris Talent remains a connection platform and does not guarantee any outcome."}
           </p>
         </Container>
       </Section>
@@ -455,6 +606,31 @@ function FeatureCard({ title, text, iconIndex = 0 }: { title: string; text: stri
       <h3 className="font-heading text-2xl leading-tight text-navy">{title}</h3>
       <p className="mt-3 text-sm leading-6 text-navy/70">{text}</p>
     </Card>
+  );
+}
+
+function DetailList({ title, items }: { title: string; items: string[] }) {
+  return (
+    <Card>
+      <h2 className="font-heading text-3xl text-navy">{title}</h2>
+      <ul className="mt-4 grid gap-3 text-base leading-7 text-navy/75">
+        {items.map((item) => (
+          <li key={item} className="flex gap-3">
+            <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" aria-hidden="true" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </Card>
+  );
+}
+
+function MetaRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-gold">{label}</dt>
+      <dd className="mt-1 font-semibold text-navy">{value}</dd>
+    </div>
   );
 }
 

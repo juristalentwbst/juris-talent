@@ -17,6 +17,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "^7.54.2",
+    "resend": "^6.12.3",
     "tailwind-merge": "^2.6.0",
     "zod": "^3.24.1"
   },

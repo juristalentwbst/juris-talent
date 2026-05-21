@@ -17,6 +17,7 @@ export function ContactForm({ locale }: { locale: Locale }) {
   const schema = contactSchema(t.forms.errors);
   type FormValues = z.infer<typeof schema>;
   const [invalidSubmit, setInvalidSubmit] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const {
     register,
@@ -27,10 +28,26 @@ export function ContactForm({ locale }: { locale: Locale }) {
     resolver: zodResolver(schema)
   });
 
-  function onSubmit() {
+  async function onSubmit(values: FormValues) {
     setInvalidSubmit(false);
-    setSubmitted(true);
+    setSubmitError(null);
+    const response = await fetch("/api/forms/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...values,
+        submittedLocale: locale,
+        sourcePath: window.location.pathname + window.location.search
+      })
+    });
+
+    if (!response.ok) {
+      setSubmitError(t.forms.errors.general);
+      return;
+    }
+
     reset();
+    setSubmitted(true);
   }
 
   if (submitted) {
@@ -48,6 +65,12 @@ export function ContactForm({ locale }: { locale: Locale }) {
         <div className="flex gap-3 rounded-brand border border-red-700/30 bg-red-50 p-4 text-sm font-medium text-red-800">
           <AlertCircle aria-hidden="true" size={18} />
           <span>{t.forms.errors.required}</span>
+        </div>
+      ) : null}
+      {submitError ? (
+        <div className="flex gap-3 rounded-brand border border-red-700/30 bg-red-50 p-4 text-sm font-medium text-red-800">
+          <AlertCircle aria-hidden="true" size={18} />
+          <span>{submitError}</span>
         </div>
       ) : null}
       <div className="grid gap-5 sm:grid-cols-2">
@@ -71,7 +94,12 @@ export function ContactForm({ locale }: { locale: Locale }) {
         <Textarea {...register("message")} />
       </Field>
       <p className="rounded-brand border border-gold/45 bg-cream p-4 text-sm leading-6 text-navy/75">{t.common.privacyNoticeContact}</p>
-      <Button type="submit" disabled={isSubmitting}>{t.forms.contact.submit}</Button>
+      <label className="flex gap-3 rounded-brand border border-warmgray bg-white p-4 text-sm leading-6 text-navy">
+        <input className="mt-1 h-4 w-4 accent-gold" type="checkbox" {...register("consent")} />
+        <span>{t.forms.contact.consent}</span>
+      </label>
+      <ErrorMessage>{errors.consent?.message}</ErrorMessage>
+      <Button type="submit" disabled={isSubmitting}>{isSubmitting ? (locale === "fr" ? "Envoi..." : "Sending...") : t.forms.contact.submit}</Button>
     </form>
   );
 }
