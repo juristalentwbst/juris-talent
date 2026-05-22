@@ -4,9 +4,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { content } from "@/content/site";
-import { localizedHref } from "@/lib/routes";
 import type { Locale, PageKey } from "@/types/site";
-import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
 import { LanguageToggle } from "./language-toggle";
 import { Logo } from "./logo";
@@ -28,12 +26,6 @@ export function SiteHeader({ locale, pageKey }: { locale: Locale; pageKey: PageK
           ))}
         </nav>
         <div className="hidden items-center gap-2 lg:flex">
-          <ButtonLink href={localizedHref("firmRequest", locale)} variant="secondary" className="px-4">
-            {t.header.firmAccess}
-          </ButtonLink>
-          <ButtonLink href={localizedHref("login", locale)} className="px-4">
-            {t.header.login}
-          </ButtonLink>
           <LanguageToggle
             locale={locale}
             pageKey={pageKey}
@@ -64,11 +56,7 @@ export function SiteHeader({ locale, pageKey }: { locale: Locale; pageKey: PageK
                 {item.label}
               </Link>
             ))}
-            <div className="grid gap-3 pt-2 sm:grid-cols-3">
-              <ButtonLink href={localizedHref("firmRequest", locale)} variant="secondary">
-                {t.header.firmAccess}
-              </ButtonLink>
-              <ButtonLink href={localizedHref("login", locale)}>{t.header.login}</ButtonLink>
+            <div className="grid gap-3 pt-2">
               <LanguageToggle
                 locale={locale}
                 pageKey={pageKey}

@@ -35,10 +35,6 @@ export type SiteContent = {
     description: string;
   };
   nav: NavigationItem[];
-  header: {
-    firmAccess: string;
-    login: string;
-  };
   footer: {
     disclaimer: string;
     line: string;
@@ -219,18 +215,14 @@ export type SiteContent = {
 function nav(locale: Locale): NavigationItem[] {
   const labels: Record<Locale, Array<[PageKey, string]>> = {
     fr: [
-      ["home", "Accueil"],
       ["student", "Étudiant"],
-      ["opportunities", "Offres"],
-      ["firm", "Cabinet"],
+      ["firm", "Nos services"],
       ["about", "À propos"],
       ["contact", "Contact"]
     ],
     en: [
-      ["home", "Home"],
       ["student", "Student"],
-      ["opportunities", "Opportunities"],
-      ["firm", "Law Firms"],
+      ["firm", "Our Services"],
       ["about", "About"],
       ["contact", "Contact"]
     ]
@@ -251,13 +243,9 @@ export const content: Record<Locale, SiteContent> = {
         "Juris Talent met en relation les étudiants en droit, les talents juridiques et les cabinets au Québec grâce à une plateforme claire, professionnelle et ciblée."
     },
     nav: nav("fr"),
-    header: {
-      firmAccess: "Accès Cabinet",
-      login: "Connexion"
-    },
     footer: {
       disclaimer:
-        "Juris Talent est une plateforme intermédiaire de mise en relation entre talents juridiques et cabinets. Juris Talent n'offre aucun avis juridique et ne garantit pas l'obtention d'une entrevue, d'un stage, d'un emploi, d'un candidat ou d'un résultat d'embauche.",
+        "Juris Talent est une agence intermédiaire de mise en relation entre talents juridiques et cabinets. Juris Talent n'offre aucun avis juridique et ne garantit pas l'obtention d'une entrevue, d'un stage, d'un emploi, d'un candidat ou d'un résultat d'embauche.",
       line: "© Juris Talent. Tous droits réservés.",
       legalReview:
         "Les pages légales, consentements et pratiques de confidentialité doivent être revus par un professionnel juridique qualifié au Québec avant le lancement."
@@ -276,16 +264,15 @@ export const content: Record<Locale, SiteContent> = {
         "Les renseignements transmis dans ce formulaire seront utilisés uniquement pour traiter votre demande et vous répondre. Ne transmettez pas de renseignements confidentiels, sensibles ou non nécessaires dans ce formulaire.",
       cvDisclaimer: "",
       nonResponsibility:
-        "Juris Talent agit uniquement comme plateforme intermédiaire de mise en relation. Juris Talent ne vérifie pas de manière exhaustive toutes les informations transmises par les utilisateurs et ne garantit pas l'exactitude complète, la disponibilité, la compétence, la performance, la conduite ou l'adéquation d'un candidat ou d'un cabinet. Toute décision liée à une entrevue, une offre, une collaboration, un stage, un emploi ou une embauche relève exclusivement des utilisateurs concernés."
+        "Juris Talent agit uniquement comme agence intermédiaire de mise en relation et de courtage. Juris Talent ne vérifie pas de manière exhaustive toutes les informations transmises par les utilisateurs et ne garantit pas l'exactitude complète, la disponibilité, la compétence, la performance, la conduite ou l'adéquation d'un candidat ou d'un cabinet. Toute décision liée à une entrevue, une offre, une collaboration, un stage, un emploi ou une embauche relève exclusivement des utilisateurs concernés."
     },
     pages: {
       home: {
-        eyebrow: "Plateforme juridique québécoise",
-        title: "La rencontre entre la relève juridique et les cabinets d'exception.",
+        eyebrow: "",
+        title: "Le renfort légal efficace et sur mesure",
         subtitle:
-          "Juris Talent accompagne les étudiants en droit et les cabinets juridiques du Québec dans une mise en relation plus claire, plus ciblée et plus professionnelle.",
-        mission:
-          "Notre mission est de simplifier l'accès aux opportunités juridiques tout en aidant les cabinets à identifier des profils prometteurs, sérieux et alignés avec leurs besoins.",
+          "JurisTalent redéfinit le soutien légal au Québec en connectant instantanément les cabinets avec l'excellence de la relève étudiante. Face à un mandat de recherche précis ou à une surcharge soudaine, nous ciblons les profils les plus pertinents pour votre pratique. Le résultat : un renfort immédiat, économique et 100 % flexible, sans aucun engagement à long terme.",
+        mission: "",
         primary: { label: "Découvrir les opportunités", href: "/fr/offres" },
         secondary: { label: "Recruter un talent juridique", href: "/fr/cabinet" },
         pathways: [
@@ -297,7 +284,7 @@ export const content: Record<Locale, SiteContent> = {
           {
             title: "Vous représentez un cabinet",
             text: "Présentez vos besoins, recevez des profils pertinents et gagnez du temps dans votre recherche de talents juridiques.",
-            cta: { label: "Demander des profils", href: "/fr/cabinet/demander-des-profils" }
+            cta: { label: "Demander un profil", href: "/fr/cabinet/demander-des-profils" }
           }
         ],
         steps: [
@@ -316,27 +303,23 @@ export const content: Record<Locale, SiteContent> = {
         ],
         why: [
           {
-            title: "Une plateforme pensée pour le milieu juridique",
-            text: "Juris Talent comprend les exigences, la rigueur et les attentes propres aux parcours juridiques."
+            title: "Un levier de croissance immédiat",
+            text: "Ne refusez plus de dossiers complexes par manque de ressources. En remplaçant la charge fixe d'une embauche traditionnelle par un investissement ponctuel et ciblé, vous maximisez directement la rentabilité de votre cabinet."
           },
           {
-            title: "Une approche ciblée et professionnelle",
-            text: "Chaque parcours est conçu pour éviter la confusion, clarifier les démarches et valoriser les bons profils."
+            title: "La fin des surcharges subies",
+            text: "La pratique du droit est imprévisible, votre sérénité ne devrait pas l'être. Absorbez les pics d'activité, les délais de cour serrés et les urgences sans épuiser votre équipe actuelle ni compromettre la qualité de vos dossiers."
           },
           {
-            title: "Un positionnement ancré au Québec",
-            text: "La plateforme s'adresse aux étudiants, cabinets et employeurs juridiques qui évoluent dans le marché québécois."
-          },
-          {
-            title: "Une expérience premium, simple et humaine",
-            text: "Juris Talent combine la crédibilité d'un environnement juridique avec la clarté d'une plateforme moderne."
+            title: "Un impact direct sur la relève",
+            text: "Au-delà de la performance de vos propres dossiers, vous jouez un rôle clé dans la communauté. En collaborant avec JurisTalent, vous offrez un tremplin concret aux étudiants du Québec et façonnez activement l'excellence de la relève juridique."
           }
         ],
         final: {
           title: "Prêt à avancer vers la bonne opportunité juridique ?",
           text: "Que vous soyez étudiant en droit ou cabinet à la recherche de talents, Juris Talent vous aide à franchir la prochaine étape avec confiance.",
           student: { label: "Soumettre ma candidature", href: "/fr/postuler" },
-          firm: { label: "Présenter un besoin de recrutement", href: "/fr/cabinet/demander-des-profils#formulaire-demande" }
+          firm: { label: "Présenter un besoin", href: "/fr/cabinet/demander-des-profils#formulaire-demande" }
         }
       },
       student: {
@@ -382,6 +365,7 @@ export const content: Record<Locale, SiteContent> = {
           text: "Présentez votre profil à Juris Talent afin d'être considéré pour des opportunités juridiques adaptées à votre parcours."
         },
         detail: {
+          title: "Propulsez votre carrière juridique avant même votre assermentation.",
           heading: "Le défi du parcours étudiant",
           paragraphs: [
             "Le parcours académique en droit est extrêmement exigeant. Les horaires de sessions, les périodes d'examens et la charge d'étude rendent souvent impossible l'engagement dans un emploi de soutien juridique à temps plein ou selon un horaire fixe. Pourtant, acquérir une expérience pratique, comprendre la réalité des cabinets et bâtir son réseau avant la Course aux stages ou la fin de ses études est un atout indispensable sur le marché actuel.",
@@ -436,11 +420,11 @@ export const content: Record<Locale, SiteContent> = {
         }
       },
       firm: {
-        title: "Recrutez la relève juridique avec confiance.",
+        title: "Cabinets & professionnels juridiques",
         subtitle:
-          "Juris Talent aide les cabinets et employeurs juridiques à identifier des étudiants et jeunes profils juridiques plus pertinents, mieux présentés et alignés avec leurs besoins.",
-        primary: { label: "Demander des profils", href: "/fr/cabinet/demander-des-profils#formulaire-demande" },
-        secondary: { label: "Publier une opportunité", href: "/fr/cabinet/publier-une-offre" },
+          "JurisTalent agit comme agence de mise en relation et de courtage afin d'aider les cabinets et professionnels juridiques à trouver un renfort étudiant ciblé, flexible et adapté à leurs besoins.",
+        primary: { label: "Demander un profil", href: "/fr/cabinet/demander-des-profils#formulaire-demande" },
+        secondary: { label: "Nous contacter", href: "/fr/contact#formulaire-contact" },
         benefits: [
           {
             title: "Gain de temps dans la recherche de talents",
@@ -474,7 +458,7 @@ export const content: Record<Locale, SiteContent> = {
           }
         ],
         request: {
-          title: "Présenter un besoin de recrutement",
+          title: "Demander un profil",
           text: "Remplissez ce formulaire afin de nous transmettre les informations essentielles concernant votre cabinet, votre besoin et le type de profil recherché."
         },
         detail: {
@@ -506,7 +490,7 @@ export const content: Record<Locale, SiteContent> = {
           {
             question: "Juris Talent est-il un cabinet de recrutement juridique ?",
             answer:
-              "Juris Talent est une plateforme de mise en relation. Elle facilite la connexion entre talents juridiques et cabinets, sans offrir d'avis juridique ni garantir un recrutement."
+              "Juris Talent est une agence de mise en relation et de courtage. Elle facilite la connexion entre talents juridiques et cabinets, sans offrir d'avis juridique ni garantir un recrutement."
           },
           {
             question: "Quels types de profils peut-on rechercher ?",
@@ -522,7 +506,7 @@ export const content: Record<Locale, SiteContent> = {
         final: {
           title: "Trouvez des profils juridiques plus pertinents, plus rapidement.",
           text: "Présentez votre besoin à Juris Talent et simplifiez votre prochaine recherche de talents.",
-          cta: { label: "Demander des profils", href: "/fr/cabinet/demander-des-profils#formulaire-demande" }
+          cta: { label: "Demander un profil", href: "/fr/cabinet/demander-des-profils#formulaire-demande" }
         }
       },
       opportunities: {
@@ -543,20 +527,20 @@ export const content: Record<Locale, SiteContent> = {
         apply: "Postuler",
         empty: "Aucune offre n'est disponible pour le moment. Soumettez votre profil afin d'être considéré pour de futures opportunités.",
         firmCta: {
-          title: "Vous représentez un cabinet ? Publiez une opportunité.",
-          href: "/fr/cabinet/publier-une-offre",
-          label: "Publier une opportunité"
+          title: "Vous représentez un cabinet ? Contactez-nous.",
+          href: "/fr/contact#formulaire-contact",
+          label: "Nous contacter"
         },
         disclaimer:
           "Juris Talent facilite la mise en relation entre talents juridiques et cabinets. Juris Talent ne garantit pas l'obtention d'une entrevue, d'un stage, d'un emploi ou d'un résultat d'embauche. Les informations liées aux offres sont fournies à titre informatif et peuvent être modifiées."
       },
       postOpportunity: {
-        title: "Publier une opportunité",
+        title: "Soumettre un besoin",
         subtitle:
-          "Présentez une opportunité juridique afin que Juris Talent puisse l'examiner et la rendre disponible aux profils pertinents."
+          "Présentez votre besoin afin que Juris Talent puisse vous orienter vers la prochaine étape appropriée."
       },
       login: {
-        title: "Connexion",
+        title: "Espaces privés",
         subtitle: "L'accès aux espaces privés sera disponible dans une prochaine phase.",
         primary: { label: "Nous contacter", href: "/fr/contact" }
       },
@@ -564,10 +548,10 @@ export const content: Record<Locale, SiteContent> = {
         title: "Une plateforme pensée pour rapprocher ambition juridique et opportunité professionnelle.",
         subtitle:
           "Juris Talent est née d'un objectif simple : rendre la mise en relation entre étudiants en droit et cabinets plus claire, plus professionnelle et plus efficace.",
-        missionTitle: "Notre mission",
+        missionTitle: "NOTRE MISSION ET NOS VALEURS",
         mission:
-          "Créer un pont structuré entre la relève juridique et les cabinets du Québec, en valorisant les profils prometteurs et en simplifiant la recherche de talents pour les employeurs juridiques.",
-        valuesTitle: "Nos valeurs",
+          "Bâtir un pont entre les besoins immédiats des professionnels juridiques et l'excellence de la relève étudiante. Nous transformons l'imprévisibilité de la pratique en opportunité de croissance grâce à un modèle de soutien sur mesure.",
+        valuesTitle: "Nos Valeurs en Action",
         story: [
           "Le parcours juridique peut être exigeant, compétitif et parfois difficile à naviguer. Pour les étudiants, il n'est pas toujours simple de se rendre visibles auprès des bons cabinets.",
           "Juris Talent a été conçue pour répondre à ce double enjeu : offrir aux étudiants une vitrine plus professionnelle et donner aux cabinets un point d'entrée plus clair vers la relève juridique."
@@ -606,7 +590,7 @@ export const content: Record<Locale, SiteContent> = {
           title: "Conditions d'utilisation",
           sections: [
             { title: "1. Acceptation des conditions", body: ["En accédant au site Web de Juris Talent ou en utilisant ses formulaires, vous acceptez les présentes Conditions d'utilisation."] },
-            { title: "2. Rôle de Juris Talent", body: ["Juris Talent est une plateforme intermédiaire de mise en relation entre étudiants, talents juridiques, cabinets d'avocats et employeurs juridiques."] },
+            { title: "2. Rôle de Juris Talent", body: ["Juris Talent est une agence intermédiaire de mise en relation entre étudiants, talents juridiques, cabinets d'avocats et employeurs juridiques."] },
             { title: "3. Absence d'avis juridique", body: ["Juris Talent n'est pas un cabinet d'avocats et ne fournit aucun avis juridique, professionnel ou réglementaire."] },
             { title: "4. Aucune garantie de résultat", body: ["Juris Talent ne garantit pas l'obtention d'une entrevue, d'un stage, d'un emploi, d'un mandat, d'un candidat, d'une embauche ou d'un résultat professionnel."] },
             { title: "5. Responsabilité des utilisateurs", body: ["Les utilisateurs s'engagent à fournir des informations exactes, complètes et à jour. Les cabinets demeurent responsables de leurs décisions d'embauche et vérifications."] },
@@ -638,7 +622,7 @@ export const content: Record<Locale, SiteContent> = {
             {
               title: "Positionnement légal",
               body: [
-                "Juris Talent est une plateforme intermédiaire de mise en relation entre talents juridiques, étudiants en droit, cabinets d'avocats et employeurs juridiques.",
+                "Juris Talent est une agence intermédiaire de mise en relation entre talents juridiques, étudiants en droit, cabinets d'avocats et employeurs juridiques.",
                 "Juris Talent n'est pas un cabinet d'avocats, ne fournit aucun avis juridique et ne crée aucune relation avocat-client. Le contenu du site est fourni à titre informatif seulement.",
                 "Juris Talent ne garantit pas l'obtention d'une entrevue, d'un stage, d'un emploi, d'un mandat, d'un candidat, d'une embauche ou d'un résultat professionnel.",
                 "Les utilisateurs sont responsables de l'exactitude, de la mise à jour et de la légalité des renseignements, documents et messages qu'ils transmettent à Juris Talent."
@@ -692,7 +676,7 @@ export const content: Record<Locale, SiteContent> = {
         }
       },
       firm: {
-        submit: "Envoyer ma demande",
+        submit: "Demander un profil",
         consent:
           "J'accepte les Conditions d'utilisation et la Politique de confidentialité de Juris Talent. Je reconnais que Juris Talent facilite la mise en relation avec des profils juridiques potentiels, mais ne garantit pas la disponibilité, l'exactitude complète des informations, la performance, la sélection ou l'embauche d'un candidat.",
         acknowledgment:
@@ -768,13 +752,9 @@ export const content: Record<Locale, SiteContent> = {
         "Juris Talent connects law students, legal talent, and law firms in Québec through a clear, professional, and targeted platform."
     },
     nav: nav("en"),
-    header: {
-      firmAccess: "Law Firm Access",
-      login: "Login"
-    },
     footer: {
       disclaimer:
-        "Juris Talent is an intermediary platform that connects legal talent with law firms. Juris Talent does not provide legal advice and does not guarantee an interview, internship, job, candidate, or hiring outcome.",
+        "Juris Talent is an intermediary connection agency that connects legal talent with law firms. Juris Talent does not provide legal advice and does not guarantee an interview, internship, job, candidate, or hiring outcome.",
       line: "© Juris Talent. All rights reserved.",
       legalReview:
         "Legal pages, consents, and privacy practices should be reviewed by a qualified Québec legal professional before launch."
@@ -793,16 +773,15 @@ export const content: Record<Locale, SiteContent> = {
         "The information submitted through this form will be used only to process your request and respond to you. Please do not submit confidential, sensitive, or unnecessary information through this form.",
       cvDisclaimer: "",
       nonResponsibility:
-        "Juris Talent acts solely as an intermediary connection platform. Juris Talent does not exhaustively verify all information submitted by users and does not guarantee the complete accuracy, availability, competence, performance, conduct, or suitability of any candidate or law firm. Any decision relating to an interview, offer, collaboration, internship, job, or hire remains exclusively the responsibility of the users concerned."
+        "Juris Talent acts solely as an intermediary connection and brokerage agency. Juris Talent does not exhaustively verify all information submitted by users and does not guarantee the complete accuracy, availability, competence, performance, conduct, or suitability of any candidate or law firm. Any decision relating to an interview, offer, collaboration, internship, job, or hire remains exclusively the responsibility of the users concerned."
     },
     pages: {
       home: {
-        eyebrow: "Québec legal talent platform",
-        title: "Where emerging legal talent meets exceptional law firms.",
+        eyebrow: "",
+        title: "Efficient, tailored legal support",
         subtitle:
-          "Juris Talent helps law students and legal employers in Québec connect through a clearer, more targeted, and more professional platform.",
-        mission:
-          "Our mission is to simplify access to legal opportunities while helping law firms identify promising, serious, and well-aligned candidates.",
+          "JurisTalent is redefining legal support in Québec by instantly connecting law firms with the excellence of emerging student talent. Whether you are facing a precise research mandate or a sudden workload surge, we target the most relevant profiles for your practice. The result: immediate, cost-effective, 100% flexible support with no long-term commitment.",
+        mission: "",
         primary: { label: "Discover opportunities", href: "/en/opportunities" },
         secondary: { label: "Recruit legal talent", href: "/en/law-firms" },
         pathways: [
@@ -814,7 +793,7 @@ export const content: Record<Locale, SiteContent> = {
           {
             title: "For law firms",
             text: "Share your hiring needs, receive relevant profiles, and save time in your search for legal talent.",
-            cta: { label: "Request profiles", href: "/en/law-firms/request-profiles" }
+            cta: { label: "Request a profile", href: "/en/law-firms/request-profiles" }
           }
         ],
         steps: [
@@ -833,27 +812,23 @@ export const content: Record<Locale, SiteContent> = {
         ],
         why: [
           {
-            title: "Built for the legal industry",
-            text: "Juris Talent understands the standards, expectations, and rigor of legal career paths."
+            title: "An immediate growth lever",
+            text: "Stop turning away complex files because of limited resources. By replacing the fixed burden of a traditional hire with a targeted, one-off investment, you directly maximize your firm's profitability."
           },
           {
-            title: "A targeted, professional approach",
-            text: "Each journey is designed to reduce confusion, clarify next steps, and highlight the right profiles."
+            title: "The end of unwanted overload",
+            text: "The practice of law is unpredictable; your peace of mind should not be. Absorb activity peaks, tight court deadlines, and urgent matters without exhausting your current team or compromising file quality."
           },
           {
-            title: "Rooted in Québec's legal market",
-            text: "The platform serves students, law firms, and legal employers operating within Québec's legal ecosystem."
-          },
-          {
-            title: "A premium, simple, human experience",
-            text: "Juris Talent combines the credibility of the legal world with the clarity of a modern platform."
+            title: "A direct impact on emerging talent",
+            text: "Beyond the performance of your own files, you play a key role in the community. By working with JurisTalent, you offer Québec students a concrete springboard and actively help shape the excellence of the next generation of legal talent."
           }
         ],
         final: {
           title: "Ready to move toward the right legal opportunity?",
           text: "Whether you are a law student or a firm looking for talent, Juris Talent helps you take the next step with confidence.",
           student: { label: "Submit my application", href: "/en/apply" },
-          firm: { label: "Share a hiring need", href: "/en/law-firms/request-profiles#request-form" }
+          firm: { label: "Share a need", href: "/en/law-firms/request-profiles#request-form" }
         }
       },
       student: {
@@ -878,6 +853,7 @@ export const content: Record<Locale, SiteContent> = {
           text: "Present your profile to Juris Talent to be considered for legal opportunities aligned with your path."
         },
         detail: {
+          title: "Launch your legal career before you are even called to the bar.",
           heading: "The challenge of the student path",
           paragraphs: [
             "Legal studies are extremely demanding. Semester schedules, exam periods, and heavy coursework often make it impossible to commit to full-time legal support work or a fixed schedule. Yet gaining practical experience, understanding the reality of law firms, and building a network before recruitment season or graduation is an essential advantage in today's market.",
@@ -916,11 +892,11 @@ export const content: Record<Locale, SiteContent> = {
         }
       },
       firm: {
-        title: "Recruit the next generation of legal talent with confidence.",
+        title: "Law firms & legal professionals",
         subtitle:
-          "Juris Talent helps law firms and legal employers identify more relevant, better-presented candidates aligned with their needs.",
-        primary: { label: "Request profiles", href: "/en/law-firms/request-profiles#request-form" },
-        secondary: { label: "Post an opportunity", href: "/en/law-firms/post-opportunity" },
+          "JurisTalent acts as a connection and brokerage agency to help law firms and legal professionals find targeted, flexible student support adapted to their needs.",
+        primary: { label: "Request a profile", href: "/en/law-firms/request-profiles#request-form" },
+        secondary: { label: "Contact us", href: "/en/contact#contact-form" },
         benefits: [
           { title: "Save time when searching for talent", text: "Receive structured information to evaluate profiles that match your criteria more efficiently." },
           { title: "Access targeted legal talent", text: "Discover students and candidates interested in Québec's legal market and motivated to develop their careers." },
@@ -933,7 +909,7 @@ export const content: Record<Locale, SiteContent> = {
           { title: "3. Move forward with selected candidates", text: "You can then contact the profiles that best align with your internal needs." }
         ],
         request: {
-          title: "Share a hiring need",
+          title: "Request a profile",
           text: "Complete this form to provide the essential information about your firm, your need, and the type of profile you are looking for."
         },
         detail: {
@@ -962,14 +938,14 @@ export const content: Record<Locale, SiteContent> = {
           ]
         },
         faq: [
-          { question: "Is Juris Talent a legal recruitment firm?", answer: "Juris Talent is a connection platform. It facilitates connections between legal talent and law firms without providing legal advice or guaranteeing recruitment." },
+          { question: "Is Juris Talent a legal recruitment firm?", answer: "Juris Talent is a connection and brokerage agency. It facilitates connections between legal talent and law firms without providing legal advice or guaranteeing recruitment." },
           { question: "What types of profiles can we look for?", answer: "Law students, interns, junior profiles, candidates interested in a specific practice area, or candidates seeking opportunities within a firm." },
           { question: "Does Juris Talent guarantee candidate quality or availability?", answer: "No. Final evaluation, verification, and hiring decisions remain the responsibility of the law firm." }
         ],
         final: {
           title: "Find more relevant legal profiles, faster.",
           text: "Share your need with Juris Talent and simplify your next search for talent.",
-          cta: { label: "Request profiles", href: "/en/law-firms/request-profiles#request-form" }
+          cta: { label: "Request a profile", href: "/en/law-firms/request-profiles#request-form" }
         }
       },
       opportunities: {
@@ -990,20 +966,20 @@ export const content: Record<Locale, SiteContent> = {
         apply: "Apply",
         empty: "No opportunities are available at the moment. Submit your profile to be considered for future opportunities.",
         firmCta: {
-          title: "Representing a law firm? Post an opportunity.",
-          href: "/en/law-firms/post-opportunity",
-          label: "Post an opportunity"
+          title: "Representing a law firm? Contact us.",
+          href: "/en/contact#contact-form",
+          label: "Contact us"
         },
         disclaimer:
           "Juris Talent facilitates connections between legal talent and law firms. Juris Talent does not guarantee an interview, internship, job, or hiring outcome. Opportunity information is provided for informational purposes and may be updated."
       },
       postOpportunity: {
-        title: "Post an Opportunity",
+        title: "Submit a Need",
         subtitle:
-          "Submit a legal opportunity so Juris Talent can review it and make it available to relevant profiles."
+          "Share your need so Juris Talent can guide you toward the appropriate next step."
       },
       login: {
-        title: "Login",
+        title: "Private Access",
         subtitle: "Private account access will be available in a future phase.",
         primary: { label: "Contact us", href: "/en/contact" }
       },
@@ -1011,10 +987,10 @@ export const content: Record<Locale, SiteContent> = {
         title: "A platform designed to connect legal ambition with professional opportunity.",
         subtitle:
           "Juris Talent was created with a simple goal: to make connections between law students and firms clearer, more professional, and more efficient.",
-        missionTitle: "Our mission",
+        missionTitle: "OUR MISSION AND VALUES",
         mission:
-          "To create a structured bridge between emerging legal talent and Québec law firms by highlighting promising profiles and simplifying talent discovery for legal employers.",
-        valuesTitle: "Our values",
+          "To build a bridge between the immediate needs of legal professionals and the excellence of emerging student talent. We transform the unpredictability of legal practice into an opportunity for growth through a tailored support model.",
+        valuesTitle: "Our Values in Action",
         story: [
           "Legal career paths can be demanding, competitive, and difficult to navigate. For students, becoming visible to the right firms is not always simple.",
           "Juris Talent was designed to address both challenges: giving students a more professional way to present themselves and giving firms a clearer access point to emerging legal talent."
@@ -1139,7 +1115,7 @@ export const content: Record<Locale, SiteContent> = {
         }
       },
       firm: {
-        submit: "Submit my request",
+        submit: "Request a profile",
         consent:
           "I accept Juris Talent's Terms of Use and Privacy Policy. I acknowledge that Juris Talent facilitates connections with potential legal profiles but does not guarantee availability, complete accuracy of information, performance, selection, or hiring of any candidate.",
         acknowledgment:
