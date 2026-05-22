@@ -582,7 +582,7 @@ export const content: Record<Locale, SiteContent> = {
           { title: "Courriel", text: "contact@juristalent.ca" },
           { title: "Téléphone", text: "438-410-4224" },
           { title: "Localisation", text: "Québec, Canada" },
-          { title: "Heures de réponse", text: "Nous répondons généralement aux demandes dans un délai de 2 à 3 jours ouvrables." }
+          { title: "Délai de mise en relation", text: "Nous répondons généralement aux demandes dans un délai de 24h à 48h." }
         ]
       },
       legal: {
@@ -1021,7 +1021,7 @@ export const content: Record<Locale, SiteContent> = {
           { title: "Email", text: "contact@juristalent.ca" },
           { title: "Phone", text: "438-410-4224" },
           { title: "Location", text: "Québec, Canada" },
-          { title: "Response expectation", text: "We generally respond within 2 to 3 business days." }
+          { title: "Connection timeframe", text: "We generally respond within 24 to 48 hours." }
         ]
       },
       legal: {
