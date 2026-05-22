@@ -32,9 +32,6 @@ export function SiteFooter({ locale }: { locale: Locale }) {
                   {item.label}
                 </Link>
               ))}
-              <Link href={localizedHref("login", locale)} className="text-sm text-white/75 transition hover:text-white">
-                {t.header.login}
-              </Link>
             </div>
           </div>
           <div>

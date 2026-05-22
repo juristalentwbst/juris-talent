@@ -54,7 +54,7 @@ function getMetaTitle(locale: Locale, pageKey: PageKey, opportunitySlug?: string
   if (pageKey === "home") {
     return locale === "fr"
       ? "Juris Talent | Relève juridique et cabinets au Québec"
-      : "Juris Talent | Legal Talent and Law Firms in Québec";
+      : "Juris Talent | Tailored Legal Support in Québec";
   }
   if (pageKey === "opportunityDetail") {
     const opportunity = getOpportunityBySlug(opportunitySlug);
@@ -68,10 +68,10 @@ function getMetaTitle(locale: Locale, pageKey: PageKey, opportunitySlug?: string
     apply: { fr: "Postuler", en: "Apply" },
     firm: { fr: "Nos services", en: "Our Services" },
     firmRequest: { fr: "Demander un profil", en: "Request a Profile" },
-    postOpportunity: { fr: "Publier une opportunité", en: "Post an Opportunity" },
+    postOpportunity: { fr: "Soumettre un besoin", en: "Submit a Need" },
     about: { fr: "À propos", en: "About" },
     contact: { fr: "Contact", en: "Contact" },
-    login: { fr: "Connexion", en: "Login" },
+    login: { fr: "Espaces privés", en: "Private Access" },
     terms: { fr: "Conditions d'utilisation", en: "Terms of Use" },
     privacy: { fr: "Politique de confidentialité", en: "Privacy Policy" },
     legal: { fr: "Avis légal", en: "Legal Notice" }

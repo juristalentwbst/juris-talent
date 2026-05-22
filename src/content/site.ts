@@ -35,10 +35,6 @@ export type SiteContent = {
     description: string;
   };
   nav: NavigationItem[];
-  header: {
-    firmAccess: string;
-    login: string;
-  };
   footer: {
     disclaimer: string;
     line: string;
@@ -219,17 +215,13 @@ export type SiteContent = {
 function nav(locale: Locale): NavigationItem[] {
   const labels: Record<Locale, Array<[PageKey, string]>> = {
     fr: [
-      ["home", "Accueil"],
       ["student", "Étudiant"],
-      ["opportunities", "Offres"],
       ["firm", "Nos services"],
       ["about", "À propos"],
       ["contact", "Contact"]
     ],
     en: [
-      ["home", "Home"],
       ["student", "Student"],
-      ["opportunities", "Opportunities"],
       ["firm", "Our Services"],
       ["about", "About"],
       ["contact", "Contact"]
@@ -251,10 +243,6 @@ export const content: Record<Locale, SiteContent> = {
         "Juris Talent met en relation les étudiants en droit, les talents juridiques et les cabinets au Québec grâce à une plateforme claire, professionnelle et ciblée."
     },
     nav: nav("fr"),
-    header: {
-      firmAccess: "Accès services",
-      login: "Connexion"
-    },
     footer: {
       disclaimer:
         "Juris Talent est une agence intermédiaire de mise en relation entre talents juridiques et cabinets. Juris Talent n'offre aucun avis juridique et ne garantit pas l'obtention d'une entrevue, d'un stage, d'un emploi, d'un candidat ou d'un résultat d'embauche.",
@@ -539,20 +527,20 @@ export const content: Record<Locale, SiteContent> = {
         apply: "Postuler",
         empty: "Aucune offre n'est disponible pour le moment. Soumettez votre profil afin d'être considéré pour de futures opportunités.",
         firmCta: {
-          title: "Vous représentez un cabinet ? Publiez une opportunité.",
-          href: "/fr/cabinet/publier-une-offre",
-          label: "Publier une opportunité"
+          title: "Vous représentez un cabinet ? Contactez-nous.",
+          href: "/fr/contact#formulaire-contact",
+          label: "Nous contacter"
         },
         disclaimer:
           "Juris Talent facilite la mise en relation entre talents juridiques et cabinets. Juris Talent ne garantit pas l'obtention d'une entrevue, d'un stage, d'un emploi ou d'un résultat d'embauche. Les informations liées aux offres sont fournies à titre informatif et peuvent être modifiées."
       },
       postOpportunity: {
-        title: "Publier une opportunité",
+        title: "Soumettre un besoin",
         subtitle:
-          "Présentez une opportunité juridique afin que Juris Talent puisse l'examiner et la rendre disponible aux profils pertinents."
+          "Présentez votre besoin afin que Juris Talent puisse vous orienter vers la prochaine étape appropriée."
       },
       login: {
-        title: "Connexion",
+        title: "Espaces privés",
         subtitle: "L'accès aux espaces privés sera disponible dans une prochaine phase.",
         primary: { label: "Nous contacter", href: "/fr/contact" }
       },
@@ -764,10 +752,6 @@ export const content: Record<Locale, SiteContent> = {
         "Juris Talent connects law students, legal talent, and law firms in Québec through a clear, professional, and targeted platform."
     },
     nav: nav("en"),
-    header: {
-      firmAccess: "Service Access",
-      login: "Login"
-    },
     footer: {
       disclaimer:
         "Juris Talent is an intermediary connection agency that connects legal talent with law firms. Juris Talent does not provide legal advice and does not guarantee an interview, internship, job, candidate, or hiring outcome.",
@@ -982,20 +966,20 @@ export const content: Record<Locale, SiteContent> = {
         apply: "Apply",
         empty: "No opportunities are available at the moment. Submit your profile to be considered for future opportunities.",
         firmCta: {
-          title: "Representing a law firm? Post an opportunity.",
-          href: "/en/law-firms/post-opportunity",
-          label: "Post an opportunity"
+          title: "Representing a law firm? Contact us.",
+          href: "/en/contact#contact-form",
+          label: "Contact us"
         },
         disclaimer:
           "Juris Talent facilitates connections between legal talent and law firms. Juris Talent does not guarantee an interview, internship, job, or hiring outcome. Opportunity information is provided for informational purposes and may be updated."
       },
       postOpportunity: {
-        title: "Post an Opportunity",
+        title: "Submit a Need",
         subtitle:
-          "Submit a legal opportunity so Juris Talent can review it and make it available to relevant profiles."
+          "Share your need so Juris Talent can guide you toward the appropriate next step."
       },
       login: {
-        title: "Login",
+        title: "Private Access",
         subtitle: "Private account access will be available in a future phase.",
         primary: { label: "Contact us", href: "/en/contact" }
       },
