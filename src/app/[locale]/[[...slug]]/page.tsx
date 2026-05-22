@@ -7,7 +7,6 @@ import { OpportunityPostingForm } from "@/components/forms/opportunity-posting-f
 import { StudentApplicationForm } from "@/components/forms/student-application-form";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { OpportunityBoard } from "@/components/opportunities/opportunity-board";
 import { ButtonLink } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
@@ -67,8 +66,8 @@ function getMetaTitle(locale: Locale, pageKey: PageKey, opportunitySlug?: string
     opportunities: { fr: "Opportunités juridiques", en: "Legal Opportunities" },
     opportunityDetail: { fr: "Offre", en: "Opportunity" },
     apply: { fr: "Postuler", en: "Apply" },
-    firm: { fr: "Cabinet", en: "Law Firms" },
-    firmRequest: { fr: "Demander des profils", en: "Request Profiles" },
+    firm: { fr: "Nos services", en: "Our Services" },
+    firmRequest: { fr: "Demander un profil", en: "Request a Profile" },
     postOpportunity: { fr: "Publier une opportunité", en: "Post an Opportunity" },
     about: { fr: "À propos", en: "About" },
     contact: { fr: "Contact", en: "Contact" },
@@ -169,16 +168,13 @@ function HomePage({ locale }: { locale: Locale }) {
         <Container>
           <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
             <div>
-              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-gold">{t.eyebrow}</p>
+              {t.eyebrow ? <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-gold">{t.eyebrow}</p> : null}
               <h1 className="font-heading text-5xl leading-tight text-navy sm:text-6xl lg:text-7xl">{t.title}</h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-navy/75">{t.subtitle}</p>
-              <p className="mt-5 max-w-2xl border-l-2 border-gold pl-5 text-base leading-7 text-navy/75">{t.mission}</p>
+              {t.mission ? <p className="mt-5 max-w-2xl border-l-2 border-gold pl-5 text-base leading-7 text-navy/75">{t.mission}</p> : null}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href={t.primary.href}>{t.primary.label}</ButtonLink>
                 <ButtonLink href={t.secondary.href} variant="secondary">{t.secondary.label}</ButtonLink>
-                <ButtonLink href={localizedHref("postOpportunity", locale)} variant="secondary">
-                  {locale === "fr" ? "Publier une opportunité" : "Post an opportunity"}
-                </ButtonLink>
               </div>
             </div>
             <Card className="border-gold/40 bg-white p-8">
@@ -321,12 +317,14 @@ function OpportunitiesPage({ locale }: { locale: Locale }) {
       <Hero title={t.title} subtitle={t.subtitle} primary={{ label: content[locale].common.studentCta, href: localizedHref("apply", locale) }} secondary={t.firmCta} />
       <Section>
         <Container>
-          <OpportunityBoard locale={locale} copy={t} />
-          <Card className="mt-8 bg-navy text-white">
-            <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-              <h2 className="font-heading text-3xl leading-tight">{t.firmCta.title}</h2>
-              <ButtonLink href={t.firmCta.href}>{t.firmCta.label}</ButtonLink>
-            </div>
+          <Card className="bg-cream text-center">
+            <h2 className="font-heading text-3xl text-navy">
+              {locale === "fr" ? "Les opportunités seront bientôt disponibles." : "Opportunities will be available soon."}
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-navy/75">{t.empty}</p>
+            <ButtonLink href={localizedHref("apply", locale)} className="mt-6">
+              {content[locale].common.studentCta}
+            </ButtonLink>
           </Card>
         </Container>
       </Section>
@@ -558,8 +556,8 @@ function FeatureSections({
           </div>
           <p className="mt-8 text-sm text-navy/60">
             {locale === "fr"
-              ? "Juris Talent demeure une plateforme de mise en relation et ne garantit aucun résultat."
-              : "Juris Talent remains a connection platform and does not guarantee any outcome."}
+              ? "Juris Talent demeure une agence de mise en relation et ne garantit aucun résultat."
+              : "Juris Talent remains a connection agency and does not guarantee any outcome."}
           </p>
         </Container>
       </Section>
