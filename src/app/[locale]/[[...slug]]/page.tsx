@@ -63,7 +63,7 @@ function getMetaTitle(locale: Locale, pageKey: PageKey, opportunitySlug?: string
   const labels: Record<PageKey, Record<Locale, string>> = {
     home: { fr: "Juris Talent", en: "Juris Talent" },
     student: { fr: "Étudiant", en: "Student" },
-    opportunities: { fr: "Opportunités juridiques", en: "Legal Opportunities" },
+    opportunities: { fr: "Mandats bientôt disponibles", en: "Mandates Coming Soon" },
     opportunityDetail: { fr: "Offre", en: "Opportunity" },
     apply: { fr: "Postuler", en: "Apply" },
     firm: { fr: "Nos services", en: "Our Services" },
@@ -82,8 +82,8 @@ function getMetaTitle(locale: Locale, pageKey: PageKey, opportunitySlug?: string
 function getMetaDescription(locale: Locale, pageKey: PageKey) {
   if (pageKey === "home") {
     return locale === "fr"
-      ? "Juris Talent met en relation les étudiants en droit, les talents juridiques et les cabinets au Québec grâce à une plateforme claire, professionnelle et ciblée."
-      : "Juris Talent connects law students, legal talent, and law firms in Québec through a clear, professional, and targeted platform.";
+      ? "Juris Talent est une agence de mise en relation entre talents juridiques et professionnels du droit au Québec."
+      : "Juris Talent is a legal talent connection agency serving legal talent and legal professionals in Québec.";
   }
   if (pageKey === "opportunities" || pageKey === "opportunityDetail") {
     return content[locale].pages.opportunities.subtitle;
@@ -150,7 +150,7 @@ function PageSwitch({ locale, pageKey, slug }: { locale: Locale; pageKey: PageKe
     case "contact":
       return <ContactPage locale={locale} />;
     case "login":
-      return <LoginPage locale={locale} />;
+      return <PrivateAccessPage locale={locale} />;
     case "terms":
     case "privacy":
     case "legal":
@@ -319,7 +319,7 @@ function OpportunitiesPage({ locale }: { locale: Locale }) {
         <Container>
           <Card className="bg-cream text-center">
             <h2 className="font-heading text-3xl text-navy">
-              {locale === "fr" ? "Les opportunités seront bientôt disponibles." : "Opportunities will be available soon."}
+              {locale === "fr" ? "Soumettez votre profil" : "Submit your profile"}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-navy/75">{t.empty}</p>
             <ButtonLink href={localizedHref("apply", locale)} className="mt-6">
@@ -405,7 +405,7 @@ function PostOpportunityPage({ locale }: { locale: Locale }) {
   );
 }
 
-function LoginPage({ locale }: { locale: Locale }) {
+function PrivateAccessPage({ locale }: { locale: Locale }) {
   const t = content[locale].pages.login;
   return (
     <>

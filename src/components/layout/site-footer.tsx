@@ -8,6 +8,10 @@ import { Logo } from "./logo";
 
 export function SiteFooter({ locale }: { locale: Locale }) {
   const t = content[locale];
+  const navigationLinks = [
+    { label: locale === "fr" ? "Accueil" : "Home", href: localizedHref("home", locale) },
+    ...t.nav
+  ];
   const legalLinks = [
     { label: locale === "fr" ? "Conditions d'utilisation" : "Terms of Use", href: localizedHref("terms", locale) },
     { label: locale === "fr" ? "Politique de confidentialité" : "Privacy Policy", href: localizedHref("privacy", locale) },
@@ -27,7 +31,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           <div>
             <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-gold">Navigation</h2>
             <div className="mt-4 grid gap-3">
-              {t.nav.map((item) => (
+              {navigationLinks.map((item) => (
                 <Link key={item.href} href={item.href} className="text-sm text-white/75 transition hover:text-white">
                   {item.label}
                 </Link>
@@ -35,7 +39,9 @@ export function SiteFooter({ locale }: { locale: Locale }) {
             </div>
           </div>
           <div>
-            <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-gold">Legal</h2>
+            <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-gold">
+              {locale === "fr" ? "Légal" : "Legal"}
+            </h2>
             <div className="mt-4 grid gap-3">
               {legalLinks.map((item) => (
                 <Link key={item.href} href={item.href} className="text-sm text-white/75 transition hover:text-white">

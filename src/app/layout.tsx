@@ -18,18 +18,18 @@ const body = Montserrat({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.juristalent.ca"),
   title: {
-    default: "Juris Talent | Relève juridique et cabinets au Québec",
+    default: "Juris Talent | Renfort légal et mise en relation au Québec",
     template: "%s | Juris Talent"
   },
   description:
-    "Juris Talent met en relation les étudiants en droit, les talents juridiques et les cabinets au Québec grâce à une plateforme claire, professionnelle et ciblée.",
+    "Juris Talent est une agence de mise en relation entre talents juridiques et professionnels du droit au Québec.",
   openGraph: {
     siteName: "Juris Talent",
     type: "website",
     url: "https://www.juristalent.ca/fr",
-    title: "Juris Talent | Relève juridique et cabinets au Québec",
+    title: "Juris Talent | Renfort légal et mise en relation au Québec",
     description:
-      "Juris Talent met en relation les étudiants en droit, les talents juridiques et les cabinets au Québec grâce à une plateforme claire, professionnelle et ciblée.",
+      "Juris Talent est une agence de mise en relation entre talents juridiques et professionnels du droit au Québec.",
     images: ["/logo/juris-talent-logo.png"]
   },
   alternates: {
