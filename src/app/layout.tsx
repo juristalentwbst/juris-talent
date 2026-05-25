@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { EB_Garamond, Montserrat } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const heading = EB_Garamond({
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );
